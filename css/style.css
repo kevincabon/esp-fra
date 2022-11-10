@@ -10,3 +10,9 @@
     font-family: "LemonFriday", Arial, sans-serif;
     transform: rotate(-4deg);
 }
+h1, h2{
+    font-family: "KGPrimaryItalics", Arial, sans-serif;
+}
+.loading-font{
+    font-family: "Verdana";
+}
