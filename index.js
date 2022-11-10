@@ -32,6 +32,14 @@ let _GetRequest = (requestPath) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   }
 
+  let formatGenderOfWord = (gender) => {
+    if (!gender){
+        return ""
+    }
+    if (gender == "m" || gender == "f" || gender == "m/f"){ return `(n.${gender})` }
+    else{ return `(${gender})` }
+  }
+
   let getWordOfTheDay = async () => {
     let data = await _GetRequest("palabra_del_dia");
     data.sort(_CustomSort);
@@ -39,34 +47,24 @@ let _GetRequest = (requestPath) => {
     if (
         new Date(word.date).toLocaleDateString() == new Date().toLocaleDateString()
       ) {
-        let gender_fr = null;
-        let gender_es = null;
-        let citation = "";
-        if (word.palabra_name_gender_fr) {
-          if (
-            word.palabra_name_gender_fr == "m" ||
-            word.palabra_name_gender_fr == "f" ||
-            word.palabra_name_gender_fr == "m/f"
-          ) {
-            gender_fr = `(n.${word.palabra_name_gender_fr})`;
-          } else {
-            gender_fr = `(${word.palabra_name_gender_fr})`;
-          }
-        } else {
-          gender_fr = "";
+        let gender_fr = null, gender_es = null, gender_avanzada_es = "", gender_avanzada_fr = ""
+        let playWordAudio_fr = "", playFraseAudio_fr = "", citation = "", palabra_avanzada = ""
+        if (word.word_audio_fr) {
+          playWordAudio_fr = `<i class="fa-solid fa-circle-play" onclick="_LoadAudio('${word.word_audio_fr}')"></i>&nbsp;`;
         }
-        if (word.palabra_name_gender_es) {
-          if (
-            word.palabra_name_gender_es == "m" ||
-            word.palabra_name_gender_es == "f" ||
-            word.palabra_name_gender_es == "m/f"
-          ) {
-            gender_es = `(n.${word.palabra_name_gender_es})`;
-          } else {
-            gender_es = `(${word.palabra_name_gender_es})`;
-          }
-        } else {
-          gender_es = "";
+        if (word.frase_audio_fr) {
+          playFraseAudio_fr = `<i class="fa-solid fa-circle-play" onclick="_LoadAudio('${word.frase_audio_fr}')"></i>&nbsp;`;
+        }
+        gender_fr = formatGenderOfWord(word.palabra_name_gender_fr)
+        gender_es = formatGenderOfWord(word.palabra_name_gender_es)
+    
+        if (word.palabra_avanzada_fr){
+          gender_avanzada_fr = formatGenderOfWord(word.palabra_avanzada_gender_fr)
+          gender_avanzada_es = formatGenderOfWord(word.palabra_avanzada_gender_es)
+          palabra_avanzada = `
+              <br>
+              <span class="font-bold text-green-700">${word.palabra_avanzada_es}</span> <span class="italic text-xs">${gender_avanzada_es}</span> - <span class="text-red-700">${word.palabra_avanzada_fr}</span> <span class="italic text-xs">${gender_avanzada_fr}</span>
+          `
         }
         if (word.citation_es && word.citation_autor) {
           citation = `
@@ -103,11 +101,10 @@ let _GetRequest = (requestPath) => {
                         </p>
                         <p id="audio" class="text-center"></p>
                         <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                        <p><span class="font-bold text-green-700">${
-                          word.palabra_es
-                        }</span> <span class="italic text-sm">${gender_es}</span> - <span class="text-red-700">${
-          word.palabra_fr
-        }</span> <span class="italic text-sm">${gender_fr}</span></p>
+                        <p>
+                            <span class="font-bold text-green-700">${word.palabra_es}</span> <span class="italic text-sm">${gender_es}</span> - ${playWordAudio_fr}<span class="text-red-700">${word.palabra_fr}</span> <span class="italic text-sm">${gender_fr}</span>
+                            ${palabra_avanzada}
+                        </p>
                         <p>
                             <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
                             <span class="font-bold text-green-700">${
