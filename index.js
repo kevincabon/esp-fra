@@ -1,52 +1,8 @@
-let _GetRequest = (requestPath) => {
-    return new Promise((resolve) => {
-        fetch("https://opensheet.elk.sh/1E3O5NWsM4Cka4CJa3jb_54gcvpAFYpmbOVeYcUG3-Ps/" + requestPath)
-        .then( (response) => {
-            return response.json()
-        })
-        .then((data) => {
-            resolve(data)
-        })
-        .catch((err) => {
-            console.error(err)
-            return err
-        })
-    });
-  }
-
-  let _FormatDate = (date, lang) => {
-    if (!date){
-        return ""
-    }
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    let datetime = new Date(date)
-    let str = datetime.toLocaleDateString(lang, options)
-    var splitStr = str.toLowerCase().split(' ');
-    for (var i = 0; i < splitStr.length; i++) {
-        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-    }
-    return splitStr.join(' '); 
-  }
-
-  let _CustomSort = (a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  }
-
-  let formatGenderOfWord = (gender) => {
-    if (!gender){
-        return ""
-    }
-    if (gender == "m" || gender == "f" || gender == "m/f"){ return `(n.${gender})` }
-    else{ return `(${gender})` }
-  }
-
-  let getWordOfTheDay = async () => {
+let getWordOfTheDay = async () => {
     let data = await _GetRequest("palabra_del_dia");
     data.sort(_CustomSort);
     let word = data[0];
-    if (
-        new Date(word.date).toLocaleDateString() == new Date().toLocaleDateString()
-      ) {
+    if (new Date(word.date).toLocaleDateString() == new Date().toLocaleDateString()) {
         let gender_fr = null, gender_es = null, gender_avanzada_es = "", gender_avanzada_fr = ""
         let playWordAudio_fr = "", playFraseAudio_fr = "", citation = "", palabra_avanzada = ""
         if (word.word_audio_fr) {
@@ -94,10 +50,7 @@ let _GetRequest = (requestPath) => {
                         <p class="font-bold mt-1">
                             ${_FormatDate(word.date, "es-ES")}
                             <br>
-                            <span class="italic text-sm">${_FormatDate(
-                              word.date,
-                              "fr-FR"
-                            )}</span> 
+                            <span class="italic text-sm">${_FormatDate(word.date, "fr-FR")}</span> 
                         </p>
                         <p id="audio" class="text-center"></p>
                         <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
@@ -107,26 +60,18 @@ let _GetRequest = (requestPath) => {
                         </p>
                         <p>
                             <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                            <span class="font-bold text-green-700">${
-                              word.frase_es
-                            }</span><br>
-                            <span class="italic text-red-700">${
-          word.frase_fr
-        }</span>
+                            <span class="font-bold text-green-700">${word.frase_es}</span><br>
+                            <span class="italic text-red-700">${word.frase_fr}</span>
                         </p>
                         ${citation}
                     `;
-      } else {
+    } else {
         document.getElementsByClassName("loading_div")[0].innerHTML = `
             <span class="text-red-700">Aucun mot & aucune phrase disponible !</span>
         `;
-        document
-          .getElementsByClassName("loading_div")[0]
-          .classList.remove("animate-pulse");
-        document
-          .getElementsByClassName("loading_div")[0]
-          .classList.add("text-sm", "md:text-base");
-      }
-  }
+        document.getElementsByClassName("loading_div")[0].classList.remove("animate-pulse");
+        document.getElementsByClassName("loading_div")[0].classList.add("text-sm", "md:text-base");
+    }
+}
 
-  getWordOfTheDay()
+getWordOfTheDay()
