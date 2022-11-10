@@ -1,0 +1,12 @@
+@font-face {
+    font-family: KGPrimaryItalics;
+    src: url(../assets/fonts/KGPrimaryItalics.ttf);
+}
+@font-face {
+    font-family: LemonFriday;
+    src: url(../assets/fonts/Lemon_Friday.ttf);
+}
+.home--title{
+    font-family: "LemonFriday", Arial, sans-serif;
+    transform: rotate(-4deg);
+}
