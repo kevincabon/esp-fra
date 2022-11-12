@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/daisyui/css/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/functions.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="../dist/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Palabra, Frase y Cita del dia</title>
+</head>
+<body class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+
+    <div class="navbar bg-base-100" id="navBar"></div>
+
+    <header class="palabra-y-frase__header mt-4">
+        <h1 class="text-3xl sm:text-4xl text-center text-slate-800 dark:text-slate-200 px-1">Palabra, Frase y Cita del dia</h1>
+        <p class="text-center my-2">Mot, Phrase et Citation du jour</p>
+        <p class="text-center italic text-xs my-3">Sources : <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></p>
+    </header>
+    
+    <section id="response">
+        <div class="text-center animate-pulse">
+            Chargement ... <i class="fa-solid fa-fan animate-spin"></i>
+        </div>
+    </section>
+
+    <section class="container mx-auto palabra-y-frase__main mt-4 mb-5">
+        <p id="audio" class="text-center"></p>
+        <section id="palabra-y-frase__main--list-exemple" class="">
+            <article class="my-5 w-11/12 sm:w-10/12 md:w-9/12 lg:w-7/12 xl:w-6/12 p-3 mx-auto border border-current rounded-lg shadow-xl dark:shadow-slate-700 dark:shadow-lg bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300 animate-pulse blur-sm">
+                <div class="row text-center">
+                    <span class="font-bold">Miércoles, 10 De Agosto De 2022</span>
+                    <br>
+                    <span class="italic text-sm">Mercredi 10 Août 2022</span> 
+                </div>
+                <hr class="w-4/12 mx-auto my-3 border-slate-600 dark:border-slate-400">
+                <article class="my-2">
+                    <div>
+                        <span class="font-bold text-green-700">parada del autobús</span> <span class="italic text-xs">(n.f)</span> - <span class="text-red-700">arrêt de bus</span> <span class="italic text-xs">(n.m)</span>
+                    </div>
+                    <hr class="w-4/12 my-3 border-slate-600 dark:border-slate-400">
+                    <div>
+                        <span class="font-bold text-green-700">Creo que es mejor así.</span><br>
+                        <span class="italic text-red-700">Je crois que c'est mieux comme ça.</span>
+                    </div>
+                    <hr class="w-4/12 my-3 border-slate-600 dark:border-slate-400">
+                    <div>
+                        <figure>
+                            <blockquote class="text-justify">
+                                <span class="font-bold text-green-700">A veces nos ocurre que personas a las que no conocemos nos inspiran un interés súbito cuando las vemos por primera vez, incluso antes de cruzar una palabra con ellas.</span>
+                                <br>
+                                <span class="italic text-red-700">Il arrive parfois que des personnes que nous ne connaissons pas nous inspirent un intérêt soudain lorsque nous les voyons pour la première fois, avant même que nous leur adressions la parole.</span>
+                            </blockquote>
+                            <figcaption class="text-sm m-1 before:content-['—']">
+                            Fiodor Dostoievski (1821-1881) Novelista ruso (Romancier russe).
+                            </figcaption>
+                        </figure>
+                    </div>
+                </article>
+            </article>
+        </section>
+        <section id="palabra-y-frase__main--list"></section>
+        <div class="text-center mt-4" id="see-more-div" hidden>
+            <button class="bg-gray-700 dark:bg-gray-300 text-gray-200 dark:text-gray-900 rounded hover:bg-gray-600 hover:dark:bg-gray-200 px-4 py-1 focus:outline-none" onclick="displayOldWords(this)">Voir plus&nbsp;&nbsp;<i class="fa-solid fa-caret-down"></i></button>
+        </div>
+        <section id="palabra-y-frase__main--list--oldest" hidden></section>
+    </section>
+
+    <button onclick="_TopFunction()" id="top-button" class="bg-slate-700 dark:bg-slate-900 text-slate-300 dark:text-slate-200 hover:bg-slate-600 hover:text-slate-200 hover:dark:bg-slate-700 over:text-slate-100 opacity-70 px-4 py-2 rounded-lg"><i class="fas fa-arrow-up fa-2x"></i></button>
+
+    <footer></footer>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../dist/fontawesome/js/all.min.js"></script>
+    <script src="../js/words-of-the-day.js"></script>
+</body>
+</html>
