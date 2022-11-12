@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/daisyui/css/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/functions.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="../dist/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Les verbes</title>
+</head>
+<body class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+
+    <div class="navbar bg-base-100" id="navBar"></div>
+
+    <header class="verbs__header mt-4">
+        <h1 class="text-3xl sm:text-4xl text-center text-slate-800 dark:text-slate-200 p-1">Prononciation des verbes en français</h1>
+    </header>
+    <section class="container mx-auto verbs__main mt-3 mb-5">
+        <p id="audio" class="text-center"></p>
+        <h3 class="text-center text-2xl md:text-3xl py-2">Les verbes du 1er groupe <span class="fw-bold fst-italic">-ER</span></h3>
+        <article id="first_grp_verb" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 my-6 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300"></article>
+    
+        <h3 class="text-center text-2xl md:text-3xl py-2">Les verbes du 2e groupe <span class="fw-bold fst-italic">-IR</span></h3>
+        <article id="second_grp_verb" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 my-6 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300"></article>
+    </section>
+
+    <button onclick="_TopFunction()" id="top-button" class="bg-slate-700 dark:bg-slate-900 text-slate-300 dark:text-slate-200 hover:bg-slate-600 hover:text-slate-200 hover:dark:bg-slate-700 over:text-slate-100 opacity-70 px-4 py-2 rounded-lg"><i class="fas fa-arrow-up fa-2x"></i></button>
+
+    <footer></footer>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../dist/fontawesome/js/all.min.js"></script>
+    <script src="../js/verbs.js"></script>
+</body>
+</html>

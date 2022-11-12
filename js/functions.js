@@ -29,6 +29,11 @@ let _FormatDate = (date, lang) => {
 let _CustomSort = (a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
 }
+let _LoadAudio = (name) => {
+    document.getElementById("audio").innerHTML = `    
+        <audio src="../assets/audio/${name}.m4a" type="audio/x-m4a" controls autoplay class="mx-auto"></audio>
+    `
+  }
 let formatGenderOfWord = (gender) => {
     if (!gender){
         return ""

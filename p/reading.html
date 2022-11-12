@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/daisyui/css/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/functions.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="../dist/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Lecture</title>
+</head>
+<body class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+
+    <div class="navbar bg-base-100" id="navBar"></div>
+
+    <header class="lecture__header mt-4">
+        <h1 class="text-3xl sm:text-4xl text-center text-slate-800 dark:text-slate-200 p-1">Lecture</h1>
+    </header>
+    <section class="container mx-auto lecture__main my-5" hidden></section>
+    
+    <button onclick="_TopFunction()" id="top-button" class="bg-slate-700 dark:bg-slate-900 text-slate-300 dark:text-slate-200 hover:bg-slate-600 hover:text-slate-200 hover:dark:bg-slate-700 over:text-slate-100 opacity-70 px-4 py-2 rounded-lg"><i class="fas fa-arrow-up fa-2x"></i></button>
+    <section id="response" hidden></section>
+
+    <footer></footer>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../dist/fontawesome/js/all.min.js"></script>
+    <script src="../js/reading.js"></script>
+</body>
+</html>

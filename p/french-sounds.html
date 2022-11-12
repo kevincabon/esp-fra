@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/daisyui/css/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/functions.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="../dist/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Les différents sons</title>
+</head>
+<body class="bg-gray-300 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
+
+    <div class="navbar bg-base-100" id="navBar"></div>
+
+    <header class="fr-sounds__header mt-4">
+        <h1 class="text-3xl sm:text-4xl text-center text-slate-800 dark:text-slate-200 p-1">Prononciation des sons en français</h1>
+    </header>
+    
+    <section class="container mx-auto fr-sounds__main mt-3 mb-5" hidden>
+        <p id="audio" class="text-center"></p>
+        <div class="col-lg-9 mx-auto" id="sounds_list">
+            <article id="content01" x-data={show:false} class="my-7 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading01" class="cursor-pointer">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "IN - IM - AIN - AIM - EIN - UN - UM" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_01" x-show="show" class=" mt-2">       
+                    <h4 class="text-2xl my-3">Son IN&nbsp;<i class="fa-solid fa-circle-play" onclick="_LoadAudio('sounds_in')"></i></h4>
+                    <ul id="fr-sounds__main--in" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son IM&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--im" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son AIN&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ain" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son AIM&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--aim" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EIN&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ein" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son UN&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--un" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son UM&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--um" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content02" x-data={show:false} class="my-7 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading02"  class="accordion-header cursor-pointer data-bs-toggle="collapse" data-bs-target="#sound_02" aria-expanded="false" aria-controls="sound_02">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "OU" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_02" x-show="show" aria-labelledby="heading02" data-bs-parent="#content02">       
+                    <ul id="fr-sounds__main--ou" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content03" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading03" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_03" aria-expanded="false" aria-controls="sound_03">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "U" et "OU" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_03" x-show="show" aria-labelledby="heading03" data-bs-parent="#content03">       
+                    <ul id="fr-sounds__main--u-and-ou" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content04" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading04" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_04" aria-expanded="false" aria-controls="sound_04">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "ON" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_04" x-show="show" aria-labelledby="heading04" data-bs-parent="#content04">       
+                    <ul id="fr-sounds__main--on" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content05" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading05" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_05" aria-expanded="false" aria-controls="sound_05">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "OI" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_05" x-show="show" aria-labelledby="heading05" data-bs-parent="#content05">       
+                    <ul id="fr-sounds__main--oi" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content06" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading06" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_06" aria-expanded="false" aria-controls="sound_06">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "AU - EAU" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_06" x-show="show" aria-labelledby="heading06" data-bs-parent="#content06">       
+                    <h4 class="text-2xl my-3">Son AU&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--au" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EAU&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--eau" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content07" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading07" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_07" aria-expanded="false" aria-controls="sound_07">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "AIL - EIL - OUIL - EUIL" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_07" x-show="show" aria-labelledby="heading07" data-bs-parent="#content07">       
+                    <h4 class="text-2xl my-3">Son AIL, AILLE&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ail" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EIL, EILLE&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--eil" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son OUIL, OUILLE&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ouil" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EUIL, EUILLE&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--euil" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content08" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading08" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_08" aria-expanded="false" aria-controls="sound_08">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "EU - ŒU" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_08" x-show="show" aria-labelledby="heading08" data-bs-parent="#content08">       
+                    <h4 class="text-2xl my-3">Son EU&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--eu" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son ŒU&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--oeu" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content09" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading09" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_09" aria-expanded="false" aria-controls="sound_09">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "AN - AM - EN - EM" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_09" x-show="show" aria-labelledby="heading09" data-bs-parent="#content09">       
+                    <h4 class="text-2xl my-3">Son AN&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--an" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son AM&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--am" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EN&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--en" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EM&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--em" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content10" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading10" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_10" aria-expanded="false" aria-controls="sound_10">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "AI - EI - ET" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_10" x-show="show" aria-labelledby="heading10" data-bs-parent="#content10">       
+                    <h4 class="text-2xl my-3">Son AI&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ai" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son EI&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--ei" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                    <h4 class="text-2xl my-3">Son ET&nbsp;<i class="fa-solid fa-circle-play text-muted opacity-50"></i></h4>
+                    <ul id="fr-sounds__main--et" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content11" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading11" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_11" aria-expanded="false" aria-controls="sound_11">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "V" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_11" x-show="show" aria-labelledby="heading11" data-bs-parent="#content11">       
+                    <ul id="fr-sounds__main--v" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content12" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading12" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_12" aria-expanded="false" aria-controls="sound_12">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "B" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_12" x-show="show" aria-labelledby="heading12" data-bs-parent="#content12">       
+                    <ul id="fr-sounds__main--b" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+    
+            <article id="content13" x-data={show:false} class="my-4 w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 p-3 mx-auto border border-current rounded-lg shadow-xl bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
+                <div id="heading13" class="accordion-header cursor-pointer" data-bs-toggle="collapse" data-bs-target="#sound_13" aria-expanded="false" aria-controls="sound_13">
+                    <h3 onclick="changeIcon(this)" @click="show=!show" class="text-center text-2xl md:text-3xl py-3">Son "R" <i class="float-right mt-5 text-base fa-solid fa-chevron-down float-end"></i></h3>
+                </div>
+                <div id="sound_13" x-show="show" aria-labelledby="heading13" data-bs-parent="#content13">       
+                    <ul id="fr-sounds__main--r" class="grid grid-cols-1 md:grid-cols-2 gap-1"></ul>
+                </div>
+            </article>
+        </div>
+    </section>
+    <button onclick="_TopFunction()" id="top-button" class="bg-slate-700 dark:bg-slate-900 text-slate-300 dark:text-slate-200 hover:bg-slate-600 hover:text-slate-200 hover:dark:bg-slate-700 over:text-slate-100 opacity-70 px-4 py-2 rounded-lg"><i class="fas fa-arrow-up fa-2x"></i></button>
+    <section id="response" hidden></section>
+
+    <footer></footer>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../dist/fontawesome/js/all.min.js"></script>
+    <script src="../js/french-sounds.js"></script>
+</body>
+</html>
