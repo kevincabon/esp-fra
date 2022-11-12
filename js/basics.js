@@ -13,7 +13,7 @@ let getData = async () => {
         }
         document.getElementById("basics--list").innerHTML += `
             <li class="mt-3">
-                <span class="fw-bold">${word.es}</span> - ${playAudio}<span class="fst-italic">${word.fr}</span>
+                <span class="font-bold">${word.es}</span> - ${playAudio}<span class="italic">${word.fr}</span>
             </li>
         `
     });
