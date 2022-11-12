@@ -26,6 +26,18 @@ let getData = async () => {
             `
         }
         if (word.citation_es && word.citation_autor){
+            let author = word.citation_autor.split(") ")
+            let author_name = author[0].split("(")[0]
+            let author_years = author[0].split("(")[1]
+            let ageOfAuthor = author_years.split("-")
+            if (ageOfAuthor[1] == "?"){
+                ageOfAuthor[1] = new Date().getFullYear()
+            }
+            if (word.citation_autor_wiki){
+                author_name = `<a href="https://fr.wikipedia.org/wiki/${word.citation_autor_wiki}" target="_blank">${author_name}</a>`
+            }
+            ageOfAuthor = parseInt(ageOfAuthor[1]) - parseInt(ageOfAuthor[0])
+            let author_infos = author[1].split(". ")
             citation = `
                     <hr class="w-4/12 my-3 border-slate-600 dark:border-slate-400">
                     <div>
@@ -35,8 +47,10 @@ let getData = async () => {
                                 <br>
                                 <span class="italic text-red-700">${word.citation_fr}</span>
                             </blockquote>
-                            <figcaption class="text-sm m-1 before:content-['—']">
-                                ${word.citation_autor}
+                            <figcaption class="text-sm m-1">
+                                — <span class="font-bold">${author_name}</span> (${author_years}) (${ageOfAuthor} años/ans)</span>
+                                <br>
+                                <span class="ml-3">${author_infos[0]}. </span><span class="italic">${author_infos[1]}</span>
                             </figcaption>
                         </figure>
                     </div>

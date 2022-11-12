@@ -23,26 +23,35 @@ let getWordOfTheDay = async () => {
           `
         }
         if (word.citation_es && word.citation_autor) {
-          citation = `
-                            <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                            <figure class="col-lg-10 mx-auto">
-                                <blockquote>
-                                    <span class="font-bold text-green-700">${word.citation_es}</span>
-                                    <br>
-                                    <span class="italic text-red-700">${word.citation_fr}</span>
-                                </blockquote>
-                                <figcaption class="text-sm m-1 before:content-['—']">
-                                    ${word.citation_autor}
-                                </figcaption>
-                                <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                                <cite title="Sources : Proverbia et LexisRex" class="text-sm">Sources :  <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia/" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></cite>
-                            </figure>
-                        `;
-        } else {
-          citation = `
-                            <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                            <cite title="Sources : Proverbia et LexisRex" class="text-sm">Sources :  <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia/" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></cite>
-                        `;
+            let author = word.citation_autor.split(") ")
+            let author_name = author[0].split("(")[0]
+            let author_years = author[0].split("(")[1]
+            let ageOfAuthor = author_years.split("-")
+            if (ageOfAuthor[1] == "?"){
+                ageOfAuthor[1] = new Date().getFullYear()
+            }
+            if (word.citation_autor_wiki){
+                author_name = `<a href="https://fr.wikipedia.org/wiki/${word.citation_autor_wiki}" target="_blank">${author_name}</a>`
+            }
+            ageOfAuthor = parseInt(ageOfAuthor[1]) - parseInt(ageOfAuthor[0])
+            let author_infos = author[1].split(". ")
+            citation = `
+                              <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
+                              <figure class="col-lg-10 mx-auto">
+                                  <blockquote>
+                                      <span class="font-bold text-green-700">${word.citation_es}</span>
+                                      <br>
+                                      <span class="italic text-red-700">${word.citation_fr}</span>
+                                  </blockquote>
+                                  <figcaption class="text-sm m-1">
+                                      — <span class="font-bold">${author_name}</span> (${author_years}) (${ageOfAuthor} años/ans)</span>
+                                      <br>
+                                      <span class="ml-3">${author_infos[0]}. </span><span class="italic">${author_infos[1]}</span>
+                                  </figcaption>
+                                  <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
+                                  <cite title="Sources : Proverbia et LexisRex" class="text-sm">Sources :  <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia/" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></cite>
+                              </figure>
+                          `;
         }
     
         document.getElementById("word-of-the-day").innerHTML = `
