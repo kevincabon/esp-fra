@@ -56,8 +56,8 @@ let getWordOfTheDay = async () => {
     
         document.getElementById("word-of-the-day").innerHTML = `
                         <h2 class="text-2xl text-slate-800 dark:text-slate-200">Palabra, Frase y Cita del día</h2>
-                        <p class="font-bold mt-1">
-                            ${_FormatDate(word.date, "es-ES")}
+                        <p class="mt-1">
+                            <span class="font-bold">${_FormatDate(word.date, "es-ES")}</span>
                             <br>
                             <span class="italic text-sm">${_FormatDate(word.date, "fr-FR")}</span> 
                         </p>
