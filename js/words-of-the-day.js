@@ -27,8 +27,8 @@ let getData = async () => {
         }
         if (word.citation_es && word.citation_autor){
             let author = word.citation_autor.split(") ")
-            let author_name = author[0].split("(")[0]
-            let author_years = author[0].split("(")[1]
+            let author_name = author[0].split(" (")[0]
+            let author_years = author[0].split(" (")[1]
             let ageOfAuthor = author_years.split("-")
             if (ageOfAuthor[1] == "?"){
                 ageOfAuthor[1] = new Date().getFullYear()
@@ -48,7 +48,7 @@ let getData = async () => {
                                 <span class="italic text-red-700">${word.citation_fr}</span>
                             </blockquote>
                             <figcaption class="text-sm m-1">
-                                — <span class="font-bold">${author_name}</span> (${author_years}) (${ageOfAuthor} años/ans)</span>
+                                — <span class="font-bold">${author_name}</span> (${author_years}) <span class="text-xs">(${ageOfAuthor} años/ans)</span>
                                 <br>
                                 <span class="ml-3">${author_infos[0]}. </span><span class="italic">${author_infos[1]}</span>
                             </figcaption>
