@@ -7,10 +7,10 @@ let getData = async () => {
     document.getElementById("response").hidden = false
     let data = await _GetRequest("poemas")
     data.forEach(poem => {
-        let originalText = null
-        let translateText = ""
-        let badgeLang = ""
-        let badgeOtherLang = ""
+        let originalText = null, translateText = "", badgeLang = "", badgeOtherLang = "", wikiPage = ""
+        if (poem.author_wiki){
+            wikiPage = `<a href="https://fr.wikipedia.org/wiki/${poem.author_wiki}" target="_blank" class="text-sm opacity-80"><i class="fa-brands fa-wikipedia-w"></i></a>`
+        }
         if (poem.original_lang == "es"){
             originalText = poem.es
             translateText = poem.fr
@@ -28,7 +28,7 @@ let getData = async () => {
                 <h4 class="font-bold text-center mt-4">${poem.titre || ""}</h4>
                 <p class="fst-italic text-center originalText" id="poem_original_${poem.id}">${originalText}</p>
                 <p class="fst-italic text-center translateText" id="poem_translate_${poem.id}" hidden>${translateText}</p>
-                <p class="font-bold italic">${poem.auteur || ""}</p>
+                <p class="font-bold italic">${wikiPage} ${poem.auteur || ""}</p>
             </article>
         `
     });
