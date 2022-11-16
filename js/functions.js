@@ -1,4 +1,4 @@
-let _GetRequest = (requestPath) => {
+const _GetRequest = (requestPath) => {
     return new Promise((resolve) => {
         fetch("https://opensheet.elk.sh/1E3O5NWsM4Cka4CJa3jb_54gcvpAFYpmbOVeYcUG3-Ps/" + requestPath)
         .then( (response) => {
@@ -13,7 +13,7 @@ let _GetRequest = (requestPath) => {
         })
     });
 }
-let _FormatDate = (date, lang) => {
+const _FormatDate = (date, lang) => {
     if (!date){
         return ""
     }
@@ -26,18 +26,31 @@ let _FormatDate = (date, lang) => {
     }
     return splitStr.join(' '); 
 }
-let _CustomSort = (a, b) => {
+const _CustomSort = (a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
 }
-let _LoadAudio = (name) => {
+const _LoadAudio = (name) => {
     document.getElementById("audio").innerHTML = `    
         <audio src="../assets/audio/${name}.m4a" type="audio/x-m4a" controls autoplay class="mx-auto"></audio>
     `
-  }
-let formatGenderOfWord = (gender) => {
+}
+const formatGenderOfWord = (gender) => {
     if (!gender){
         return ""
     }
     if (gender == "m" || gender == "f" || gender == "m/f"){ return `(n.${gender})` }
     else{ return `(${gender})` }
 }
+const copyRichText = async (elem) => {
+    elem.blur()
+    const content = elem.closest("article").innerHTML
+    const blob = new Blob([content], { type: "text/html" });
+    const richTextInput = new ClipboardItem({ "text/html": blob });
+    await navigator.clipboard.write([richTextInput]);
+    elem.classList.add("btn-accent")
+    elem.innerHTML = `<i class="fa-solid fa-check"></i>`
+    setTimeout(() => {
+        elem.classList.remove("btn-accent")
+        elem.innerHTML = `<i class="fa-regular fa-clipboard"></i>`
+    }, 1200);
+};

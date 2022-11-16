@@ -19,7 +19,7 @@ let getWordOfTheDay = async () => {
           gender_avanzada_es = formatGenderOfWord(word.palabra_avanzada_gender_es)
           palabra_avanzada = `
               <br>
-              <span class="font-bold text-green-700">${word.palabra_avanzada_es}</span> <span class="italic text-xs">${gender_avanzada_es}</span> - <span class="text-red-700">${word.palabra_avanzada_fr}</span> <span class="italic text-xs">${gender_avanzada_fr}</span>
+              <b><span class="font-bold text-green-700">${word.palabra_avanzada_es}</span></b> <span class="italic text-xs">${gender_avanzada_es}</span> - <span class="text-red-700">${word.palabra_avanzada_fr}</span> <span class="italic text-xs">${gender_avanzada_fr}</span>
           `
         }
         if (word.citation_es && word.citation_autor) {
@@ -34,38 +34,37 @@ let getWordOfTheDay = async () => {
                               <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
                               <figure class="col-lg-10 mx-auto">
                                   <blockquote>
-                                      <span class="font-bold text-green-700">${word.citation_es}</span>
+                                      <b><span class="font-bold text-green-700">${word.citation_es}</span></b>
                                       <br>
-                                      <span class="italic text-red-700">${word.citation_fr}</span>
+                                      <i><span class="italic text-red-700">${word.citation_fr}</span></i>
                                   </blockquote>
-                                  <figcaption class="text-sm m-1">
-                                      — <span class="font-bold">${author_name}</span> (${author_years})
+                                  <figcaption class="text-sm m-2">
+                                      — <b><span class="font-bold">${author_name}</span></b> (${author_years})
                                       <br>
-                                      <span class="ml-3">${author_infos[0]}. </span><span class="italic">${author_infos[1]}</span>
+                                      <span class="ml-3">${author_infos[0]}. </span><i><span class="italic">${author_infos[1]}</span></i>
                                   </figcaption>
-                                  <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                                  <cite title="Sources : Proverbia et LexisRex" class="text-sm">Sources :  <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia/" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></cite>
                               </figure>
                           `;
         }
     
         document.getElementById("word-of-the-day").innerHTML = `
+                        <button class="absolute top-2 right-2 btn btn-sm" onclick="copyRichText(this)" title="Copier"><i class="fa-regular fa-clipboard"></i></button>
                         <h2 class="text-2xl text-slate-800 dark:text-slate-200">Palabra, Frase y Cita del día</h2>
                         <p class="mt-1">
-                            <span class="font-bold">${_FormatDate(word.date, "es-ES")}</span>
+                            <b><span class="font-bold">${_FormatDate(word.date, "es-ES")}</span></b>
                             <br>
-                            <span class="italic text-sm">${_FormatDate(word.date, "fr-FR")}</span> 
+                            <i><span class="italic text-sm">${_FormatDate(word.date, "fr-FR")}</span></i> 
                         </p>
                         <p id="audio" class="text-center"></p>
                         <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
                         <p>
-                            <span class="font-bold text-green-700">${word.palabra_es}</span> <span class="italic text-sm">${gender_es}</span> - ${playWordAudio_fr}<span class="text-red-700">${word.palabra_fr}</span> <span class="italic text-sm">${gender_fr}</span>
+                            <b><span class="font-bold text-green-700">${word.palabra_es}</span></b> <i><span class="italic text-sm">${gender_es}</span></i> - ${playWordAudio_fr}<span class="text-red-700">${word.palabra_fr}</span> <i><span class="italic text-sm">${gender_fr}</span></i>
                             ${palabra_avanzada}
                         </p>
                         <p>
                             <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                            <span class="font-bold text-green-700">${word.frase_es}</span><br>
-                            <span class="italic text-red-700">${word.frase_fr}</span>
+                            <b><span class="font-bold text-green-700">${word.frase_es}</span></b><br>
+                            <i><span class="italic text-red-700">${word.frase_fr}</span></i>
                         </p>
                         ${citation}
                     `;
