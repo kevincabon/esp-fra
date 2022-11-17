@@ -26,10 +26,17 @@ let getWordOfTheDay = async () => {
             let author = word.citation_autor.split(") ")
             let author_name = author[0].split(" (")[0]
             let author_years = author[0].split(" (")[1]
+            let author_infos = author[1].split(". ")
             if (word.citation_autor_wiki){
                 author_name = `<a href="https://fr.wikipedia.org/wiki/${word.citation_autor_wiki}" target="_blank">${author_name}</a>`
             }
-            let author_infos = author[1].split(". ")
+
+            let ageOfAuthor = author_years.split("-")
+            if (ageOfAuthor[1] == "?"){
+                ageOfAuthor[1] = new Date().getFullYear()
+            }
+            ageOfAuthor = parseInt(ageOfAuthor[1]) - parseInt(ageOfAuthor[0])
+
             citation = `
                               <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
                               <figure class="col-lg-10 mx-auto">
@@ -39,7 +46,7 @@ let getWordOfTheDay = async () => {
                                       <i><span class="italic text-red-700">${word.citation_fr}</span></i>
                                   </blockquote>
                                   <figcaption class="text-sm m-2">
-                                      — <b><span class="font-bold">${author_name}</span></b> (${author_years})
+                                      — <b><span class="font-bold">${author_name}</span></b> (${author_years}) <span class="text-xs">(${ageOfAuthor} años)</span>
                                       <br>
                                       <span class="ml-3">${author_infos[0]}. </span><i><span class="italic">${author_infos[1]}</span></i>
                                   </figcaption>
