@@ -35,6 +35,9 @@ let getData = async () => {
                     <h4 class="font-bold">${text.title_fr || ""}</h4>
                     ${text.text_fr}
                 </div>
+                <div class="text-right mt-2 italic source-text text-slate-500 dark:text-slate-400">
+                    Source : ${text.source}
+                </div>
             </article>
         `
     });

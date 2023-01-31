@@ -19,6 +19,9 @@ h1, h2{
 #navBar ul{
     z-index: 99;
 }
+.source-text{
+    font-size: .65rem;
+}
 #top-button {
     display: none;
     position: fixed;
