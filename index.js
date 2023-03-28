@@ -1,89 +1,78 @@
 const loadingDivEl = document.getElementsByClassName("loading_div")[0]
+const palabraDelDiaContent = document.getElementById("word-of-the-day")
+const cardListEl = document.getElementById("card-list")
+
+const cardArray = [
+    { title: "Mots et phrases du jour", description: "Découvrez les mots et les phrases du jour.",
+      icon: "newspaper", img: "5ea8c94a-4e16-4439-b4fb-8d7cab275de0.jpeg", path:"words-of-the-day"
+    },
+    { title: "Mots et expressions basique", description: "Les premiers mots indispensables pour apprendre l'espagnol et le français.",
+      icon: "comment-dots", img: "aecc7c6a-2bcf-4a90-8f2d-b403e5103571.jpeg", path:"basics"
+    },
+    { title: "Prononciation des verbes français", description: "Écoutez la prononciation de plusieurs verbes du 1er et 2e groupe en français.",
+      icon: "microphone", img: "ddfa37e9-6340-4bd3-8c8c-df96a7299b2a.jpeg", path:"verbs"
+    },
+    { title: "Prononciation des sons en français", description: "Écoutez la prononciation de plusieurs mots en français.",
+      icon: "microphone-lines", img: "36c1ae92-0b0e-4373-b078-f631c0a41b1a.jpeg", path:"french-sounds"
+    },
+    { title: "Lecture de textes", description: "Plongez dans la lecture de plusieurs textes en espagnol et en français.",
+      icon: "book", img: "5e995dd7-1f8f-47fd-b414-c3d881792902.jpeg", path:"reading"
+    },
+    { title: "Lecture de poèmes", description: "Une sélection de poèmes disponibles en français et en espagnol.",
+      icon: "file-lines", img: "63ca2118-f653-4a8e-b887-27db15496284.jpeg", path:"poems"
+    },
+    { title: "Le français c'est facile", description: "Apprendre le français ? C'est un jeu d'enfant !",
+      icon: "face-grimace", img: "7894db65-8f07-4201-9b8a-1996b4e7ac0d.jpeg", path:"virelangues"
+    },
+    { title: "Liens utiles", description: "Retrouvez une liste de liens utiles pour apprendre l'espagnol et le français.",
+      icon: "link", img: "4f0f94e1-d52b-45a7-89b0-f6183a9a9620.jpeg", path:"links"
+    },
+  ]
 
 const getWordOfTheDay = async () => {
-    const [word] = await _GetRequest("getPalabraDelDia");
-    if (!word.palabra_fr){
-        loadingDivEl.innerHTML = `
-            <span class="text-red-700">Aucun mot & aucune phrase disponible !</span>
-            `;
-        loadingDivEl.classList.remove("animate-pulse");
-        loadingDivEl.classList.add("text-sm", "md:text-base");
-        return;
-    }
-    if (new Date(word.date).toLocaleDateString() == new Date().toLocaleDateString()) {
-        let gender_fr = null, gender_es = null, gender_avanzada_es = "", gender_avanzada_fr = ""
-        let playWordAudio_fr = "", playFraseAudio_fr = "", citation = "", palabra_avanzada = ""
-        if (word.word_audio_fr) {
-          playWordAudio_fr = `<i class="fa-solid fa-circle-play" onclick="_LoadAudio('${word.word_audio_fr}')"></i>&nbsp;`;
-        }
-        if (word.frase_audio_fr) {
-          playFraseAudio_fr = `<i class="fa-solid fa-circle-play" onclick="_LoadAudio('${word.frase_audio_fr}')"></i>&nbsp;`;
-        }
-        gender_fr = formatGenderOfWord(word.palabra_name_gender_fr)
-        gender_es = formatGenderOfWord(word.palabra_name_gender_es)
-    
-        if (word.palabra_avanzada_fr){
-          gender_avanzada_fr = formatGenderOfWord(word.palabra_avanzada_gender_fr)
-          gender_avanzada_es = formatGenderOfWord(word.palabra_avanzada_gender_es)
-          palabra_avanzada = `
-              <br>
-              <b><span class="font-bold text-green-700">${word.palabra_avanzada_es}</span></b> <span class="italic text-xs">${gender_avanzada_es}</span> - <span class="text-red-700">${word.palabra_avanzada_fr}</span> <span class="italic text-xs">${gender_avanzada_fr}</span>
-          `
-        }
-        if (word.citation_es && word.citation_autor) {
-            let author = word.citation_autor.split(") ")
-            let author_name = author[0].split(" (")[0]
-            let author_years = author[0].split(" (")[1]
-            let author_infos = author[1].split(". ")
-            if (word.citation_autor_wiki){
-                author_name = `<a href="https://fr.wikipedia.org/wiki/${word.citation_autor_wiki}" target="_blank">${author_name}</a>`
-            }
-
-            let ageOfAuthor = author_years.split("-")
-            if (ageOfAuthor[1] == "?"){
-                ageOfAuthor[1] = new Date().getFullYear()
-            }
-            ageOfAuthor = parseInt(ageOfAuthor[1]) - parseInt(ageOfAuthor[0])
-
-            citation = `
-                              <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                              <figure class="col-lg-10 mx-auto">
-                                  <blockquote>
-                                      <b><span class="font-bold text-green-700">${word.citation_es}</span></b>
-                                      <br>
-                                      <i><span class="italic text-red-700">${word.citation_fr}</span></i>
-                                  </blockquote>
-                                  <figcaption class="text-sm m-2">
-                                      — <b><span class="font-bold">${author_name}</span></b> (${author_years}) <span class="text-xs">(${ageOfAuthor} años)</span>
-                                      <br>
-                                      <span class="ml-3">${author_infos[0]}. </span><i><span class="italic">${author_infos[1]}</span></i>
-                                  </figcaption>
-                              </figure>
-                          `;
-        }
-    
-        document.getElementById("word-of-the-day").innerHTML = `
-                        <button class="absolute top-2 right-2 btn btn-sm" onclick="copyRichText(this)" title="Copier"><i class="fa-regular fa-clipboard"></i></button>
-                        <h2 class="text-2xl text-slate-800 dark:text-slate-200">Palabra, Frase y Cita del día</h2>
-                        <p class="mt-1">
-                            <b><span class="font-bold">${_FormatDate(word.date, "es-ES")}</span></b>
-                            <br>
-                            <i><span class="italic text-sm">${_FormatDate(word.date, "fr-FR")}</span></i> 
-                        </p>
-                        <p id="audio" class="text-center"></p>
-                        <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                        <p>
-                            <b><span class="font-bold text-green-700">${word.palabra_es}</span></b> <i><span class="italic text-sm">${gender_es}</span></i> - ${playWordAudio_fr}<span class="text-red-700">${word.palabra_fr}</span> <i><span class="italic text-sm">${gender_fr}</span></i>
-                            ${palabra_avanzada}
-                        </p>
-                        <p>
-                            <hr class="w-4/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
-                            <b><span class="font-bold text-green-700">${word.frase_es}</span></b><br>
-                            <i><span class="italic text-red-700">${word.frase_fr}</span></i>
-                        </p>
-                        ${citation}
-                    `;
+    try{
+        const [word] = await _GetRequest("getPalabraDelDia");
+        palabraDelDiaContent.classList.remove("animate-pulse")
+        if (new Date(word.date).toLocaleDateString() != new Date().toLocaleDateString()){
+            palabraDelDiaContent.classList.add("text-sm", "md:text-base")
+            return palabraDelDiaContent.innerHTML = innerHTML = `
+                <div class="w-11/12 sm:w-10/12 md:w-9/12 lg:w-7/12 py-4 xl:w-5/12 text-center shadow-md rounded-box bg-slate-300 dark:bg-gray-800 mx-auto">
+                  <h2 class="text-2xl text-slate-800 dark:text-slate-200 text-center">Palabra, Frase y Cita del día</h2>
+                  <span class="text-red-700">Aucun mot & aucune phrase disponible !</span>
+                  <br>
+                  <br>
+                  <a href="./p/words-of-the-day.html" class="text-teal-700 hover:text-teal-600 dark:text-teal-600  hover:dark:text-teal-500">Voir les mots et les phrases des jours précédents.</a>
+                </div>
+              `
+          }
+        return palabraDelDiaContent.innerHTML = formatPalabraDelDia(word, "home")
+    }catch(error){
+        return palabraDelDiaContent.innerHTML = error
     }
 }
 
-getWordOfTheDay()
+const displayCards = () => {
+    const cardListHtml = cardArray.map(item => {
+      return `
+          <div class="text-slate-700 dark:text-slate-300 rounded-box bg-slate-300 dark:bg-slate-700 hover:bg-gray-300 hover:dark:bg-gray-700 shadow-md overflow-hidden cursor-pointer">
+              <a href="./p/${item.path}.html">
+                  <div>
+                      <img class="object-cover ${item.icon === "newspaper" ? "object-bottom" : "object-center"} h-48 w-96 shadow-md transition duration-300 ease-in-out hover:scale-105" src="./assets/img/${item.img}" alt="">
+                  </div>
+                  <div class="px-2 py-3">
+                      <div class="font-bold text mt-1">
+                          <i class="fa-solid fa-${item.icon}"></i> ${item.title}
+                      </div>
+                      <div class="mt-1 italic text-sm text-gray-500">
+                        ${item.description}
+                      </div>
+                  </div>
+              </a>
+          </div>
+      `
+    }).join('')
+    cardListEl.innerHTML = cardListHtml
+  }
+
+getWordOfTheDay();
+displayCards();

@@ -14,27 +14,15 @@
         <h1 class="home--title w-fit mx-auto text-4xl md:text-5xl text-slate-900 dark:text-white">Français - Español</h1>
     </header>
     <section class="container mx-auto">
-        <article id="word-of-the-day" class="relative w-11/12 sm:w-10/12 md:w-9/12 lg:w-6/12 p-2 text-center mx-auto border border-current rounded-xl shadow-xl dark:shadow-slate-600/50 dark:shadow-lg bg-slate-300 dark:bg-gray-800 text-slate-600 dark:text-slate-300">
-            <h2 class="text-2xl text-slate-800 dark:text-slate-200">Palabra, Frase y Cita del día</h2>
-            <div class="italic mt-5 loading_div animate-pulse">
-                <span class="loading-font">Chargement de la phrase du jour ... </span><i class="fa-solid fa-fan animate-spin"></i>
-            </div>
-            <p>
-                <span class="font-bold text-green-700"></span><br>
-                <span class="italic text-red-700"></span>
-            </p>
-            <p class="text-xs italic">Sources : <a href="https://www.lexisrex.com/Espagnol/Mot-du-Jour" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">LexisRex.com</a>&nbsp;&&nbsp;<a href="https://proverbia.net/frase-del-dia/" target="_blank" class="hover:text-slate-900 hover:dark:text-slate-200">Proverbia.net</a></p>
-        </article>
-        <ul class="mt-8 text-center text-lg">
-            <li class="my-3 lg:my-4"><a href="./p/words-of-the-day.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-newspaper"></i> Mots et Phrases du jour</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/basics.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-comment-dots"></i> Mots et expressions basique</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/verbs.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-microphone"></i> Prononciation des verbes en français</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/french-sounds.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-microphone-lines"></i> Prononciation des sons en français</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/reading.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-brands fa-readme"></i> Lecture de textes</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/poems.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-file-lines"></i> Lecture de poèmes</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/virelangues.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-face-grimace"></i> Le français c'est facile</a></li>
-            <li class="my-3 lg:my-4"><a href="./p/links.html" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 hover:dark:text-slate-200"><i class="fa-solid fa-link"></i> Liens utiles</a></li>
-        </ul>
+        <div id="word-of-the-day" class="italic mt-5 animate-pulse">
+            <!-- Mot et phrase du jour sont afficher ici, depuis la base de données. -->
+            <h2 class="text-2xl text-slate-800 dark:text-slate-200 text-center">Palabra, Frase y Cita del día</h2>
+                <div class="text-center">
+                    <span class="loading-font mx-auto">Chargement de la phrase du jour ... </span><i class="fa-solid fa-fan animate-spin"></i>
+                </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 w-11/12 md:w-8/12 mx-auto mt-8" id="card-list"></div>
     </section>
     <footer class="container mx-auto template_footer text-center my-4">
         <hr class="w-7/12 my-3 mx-auto border-slate-600 dark:border-slate-400">
