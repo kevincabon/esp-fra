@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: KGPrimaryItalics;
+    src: url(../assets/fonts/KGPrimaryItalics.ttf);
+}
+@font-face {
+    font-family: LemonFriday;
+    src: url(../assets/fonts/Lemon_Friday.ttf);
+}
+.home--title{
+    font-family: "LemonFriday", Arial, sans-serif;
+    transform: rotate(-4deg);
+}
+h1, h2{
+    font-family: "KGPrimaryItalics", Arial, sans-serif;
+}
+.loading-font{
+    font-family: "Verdana";
+}
+#navBar ul{
+    z-index: 99;
+}
+.source-text{
+    font-size: .65rem;
+}
+#top-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    opacity: 0.65;
+}

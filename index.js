@@ -1,7 +1,15 @@
-let getWordOfTheDay = async () => {
-    let data = await _GetRequest("palabra_del_dia");
-    data.sort(_CustomSort);
-    let word = data[0];
+const loadingDivEl = document.getElementsByClassName("loading_div")[0]
+
+const getWordOfTheDay = async () => {
+    const [word] = await _GetRequest("getPalabraDelDia");
+    if (!word.palabra_fr){
+        loadingDivEl.innerHTML = `
+            <span class="text-red-700">Aucun mot & aucune phrase disponible !</span>
+            `;
+        loadingDivEl.classList.remove("animate-pulse");
+        loadingDivEl.classList.add("text-sm", "md:text-base");
+        return;
+    }
     if (new Date(word.date).toLocaleDateString() == new Date().toLocaleDateString()) {
         let gender_fr = null, gender_es = null, gender_avanzada_es = "", gender_avanzada_fr = ""
         let playWordAudio_fr = "", playFraseAudio_fr = "", citation = "", palabra_avanzada = ""
@@ -75,12 +83,6 @@ let getWordOfTheDay = async () => {
                         </p>
                         ${citation}
                     `;
-    } else {
-        document.getElementsByClassName("loading_div")[0].innerHTML = `
-            <span class="text-red-700">Aucun mot & aucune phrase disponible !</span>
-        `;
-        document.getElementsByClassName("loading_div")[0].classList.remove("animate-pulse");
-        document.getElementsByClassName("loading_div")[0].classList.add("text-sm", "md:text-base");
     }
 }
 
